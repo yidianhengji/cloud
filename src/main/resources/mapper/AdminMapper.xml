@@ -36,6 +36,16 @@
       0 = 0 order by modify_time desc
     </select>
 
+    <select id="queryById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from tb_sys_admin
+        <where>
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.cloud.entity.Admin">
         INSERT INTO tb_sys_admin
         <trim prefix="(" suffix=")" suffixOverrides=",">

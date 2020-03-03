@@ -7,7 +7,7 @@ import com.cloud.handler.Result;
 import com.cloud.handler.ResultPage;
 import com.cloud.service.AdminService;
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
+import com.cloud.handler.PageInfo;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/admin")
-@Api(value = "Admin模块", description = "helloController的api文档2")
+@Api(tags = "Admin模块")
 public class AdminController {
     private static Logger log = LoggerFactory.getLogger(AdminController.class);
 
@@ -36,20 +36,30 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Result<Object> add(@RequestBody Admin admin) {
+    public Result<Object> add(@RequestBody @Valid Admin admin) {
         log.info("Admin新增，参数admin={}", admin);
         adminService.add(admin);
         return new Result<>(BusinessStatus.SUCCESS);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public Result<Object> update(@RequestBody Admin admin) {
+    public Result<Object> update(@RequestBody @Valid Admin admin) {
         log.info("Admin修改，参数admin={}", admin);
         if (admin.getUuid() == null) {
             throw new BusinessException(BusinessStatus.UUID_REQ);
         }
         adminService.update(admin);
         return new Result<>(BusinessStatus.SUCCESS);
+    }
+
+    @RequestMapping(value = "/queryById", method = RequestMethod.POST)
+    public Result<Object> queryById(@RequestBody @Valid String uuid) {
+        log.info("Admin查询单个，参数uuid={}", uuid);
+        if (uuid==null) {
+            throw new BusinessException(BusinessStatus.UUID_REQ);
+        }
+        Admin admin = adminService.queryById(uuid);
+        return new Result<>(BusinessStatus.SUCCESS, admin);
     }
 
 }

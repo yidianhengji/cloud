@@ -11,4 +11,6 @@ public interface AdminService {
 
     int add(Admin admin);
 
+    Admin queryById(String uuid);
+
 }

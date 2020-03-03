@@ -28,6 +28,11 @@ public class PageInfo<T> implements Serializable {
     //是否是最后一页
     private boolean isEndPage;
 
+    /**
+     * 包装page对象
+     *
+     * @param list
+     */
     public PageInfo(List<T> list) {
         Page<T> page = (Page<T>) list;
         this.pageNum = page.getPageNum();
@@ -36,6 +41,26 @@ public class PageInfo<T> implements Serializable {
         this.pages = page.getPages();
         this.list = page;
         this.total =page.getTotal();
+    }
+
+    public PageInfo() {
+        super();
+    }
+
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PageInfo [pageNum=" + pageNum + ", pageSize=" + pageSize + ", total=" + total + ", pages=" + pages
+                + ", list=" + list + ", isFirstPage=" + isFirstPage + ", isEndPage=" + isEndPage + "]";
     }
 
     public PageInfo(int pageNum, int pageSize, long total, int pages, List<T> list, boolean isFirstPage,
@@ -48,15 +73,6 @@ public class PageInfo<T> implements Serializable {
         this.list = list;
         this.isFirstPage = isFirstPage;
         this.isEndPage = isEndPage;
-    }
-
-    @Override
-    public String toString() {
-        return "PageInfo{" + "pageNum=" + pageNum + ", pageSize=" + pageSize + ", total=" + total + ", pages=" + pages + ", list=" + list + ", isFirstPage=" + isFirstPage + ", isEndPage=" + isEndPage + '}';
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public int getPageNum() {
@@ -75,20 +91,13 @@ public class PageInfo<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
+
     public long getTotal() {
         return total;
     }
 
     public void setTotal(long total) {
         this.total = total;
-    }
-
-    public int getPages() {
-        return pages;
-    }
-
-    public void setPages(int pages) {
-        this.pages = pages;
     }
 
     public List<T> getList() {
@@ -103,15 +112,19 @@ public class PageInfo<T> implements Serializable {
         return isFirstPage;
     }
 
-    public void setFirstPage(boolean firstPage) {
-        isFirstPage = firstPage;
+    public void setFirstPage(boolean isFirstPage) {
+        this.isFirstPage = isFirstPage;
     }
 
     public boolean isEndPage() {
         return isEndPage;
     }
 
-    public void setEndPage(boolean endPage) {
-        isEndPage = endPage;
+    public void setEndPage(boolean isEndPage) {
+        this.isEndPage = isEndPage;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 }

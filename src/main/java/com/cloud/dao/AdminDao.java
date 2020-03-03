@@ -12,4 +12,6 @@ public interface AdminDao {
     int update(Admin admin);
 
     Page<Admin> query(Admin admin);
+
+    Admin queryById(String uuid);
 }

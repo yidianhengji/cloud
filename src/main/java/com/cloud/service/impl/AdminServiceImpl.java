@@ -46,4 +46,10 @@ public class AdminServiceImpl implements AdminService {
         admin.setModifyTime(new Date());
         return adminDao.insert(admin);
     }
+
+    @Override
+    public Admin queryById(String uuid) {
+        Admin admin = adminDao.queryById(uuid);
+        return admin;
+    }
 }

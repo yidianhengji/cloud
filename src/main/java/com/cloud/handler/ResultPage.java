@@ -1,13 +1,11 @@
 package com.cloud.handler;
 
-import com.github.pagehelper.PageInfo;
-
 public class ResultPage<T> {
     private Integer code;
     private String msg;
-    private com.github.pagehelper.PageInfo<T> data;
+    private com.cloud.handler.PageInfo<T> data;
 
-    public ResultPage(BusinessStatus businessStatus, com.github.pagehelper.PageInfo<T> pageInfo) {
+    public ResultPage(BusinessStatus businessStatus, com.cloud.handler.PageInfo<T> pageInfo) {
         this.code = businessStatus.getCode();
         this.msg = businessStatus.getMsg();
         this.data = pageInfo;
