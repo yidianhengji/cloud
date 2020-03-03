@@ -1,9 +1,8 @@
 package com.cloud.dao;
 
 import com.cloud.entity.Admin;
+import com.github.pagehelper.Page;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface AdminDao {
@@ -12,5 +11,5 @@ public interface AdminDao {
 
     int update(Admin admin);
 
-    List<Admin> query();
+    Page<Admin> query(Admin admin);
 }

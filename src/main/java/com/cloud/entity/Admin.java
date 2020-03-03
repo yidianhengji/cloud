@@ -23,9 +23,24 @@ public class Admin implements Serializable {
 
     private Date modifyTime;
 
-    @Override
-    public String toString() {
-        return "Admin{" + "uuid='" + uuid + '\'' + ", name='" + name + '\'' + ", phone='" + phone + '\'' + ", password='" + password + '\'' + ", roleId='" + roleId + '\'' + ", headPic='" + headPic + '\'' + ", status=" + status + ", createTime=" + createTime + ", modifyTime=" + modifyTime + '}';
+    private Integer pageNum;
+
+    private Integer pageSize;
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
     public String getUuid() {

@@ -1,12 +1,11 @@
 package com.cloud.service;
 
 import com.cloud.entity.Admin;
-
-import java.util.List;
+import com.github.pagehelper.Page;
 
 public interface AdminService {
 
-    List<Admin> query();
+    Page<Admin> query(Admin admin);
 
     int update(Admin admin);
 

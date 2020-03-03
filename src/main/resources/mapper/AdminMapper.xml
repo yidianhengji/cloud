@@ -26,6 +26,16 @@
                 modify_time
     </sql>
 
+    <select id="query" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/>
+      from tb_sys_admin
+      where
+      <if test="name != null and name != ''">
+        name like CONCAT(#{name}, "%") and
+      </if>
+      0 = 0 order by modify_time desc
+    </select>
+
     <insert id="insert" parameterType="com.cloud.entity.Admin">
         INSERT INTO tb_sys_admin
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -88,10 +98,6 @@
         </trim>
     </insert>
 
-    <select id="query" resultMap="BaseResultMap">
-      select * from tb_sys_admin
-    </select>
-
     <update id="update" parameterType="com.cloud.entity.Admin">
         UPDATE tb_sys_admin
         <set>
@@ -105,7 +111,7 @@
             <if test ='null != createTime'>create_time = #{createTime},</if>
             <if test ='null != modifyTime'>modify_time = #{modifyTime}</if>
         </set>
-        WHERE id = #{id}
+        WHERE uuid = #{uuid}
     </update>
 
 </mapper>
