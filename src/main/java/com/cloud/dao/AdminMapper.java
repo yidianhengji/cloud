@@ -5,7 +5,7 @@ import com.github.pagehelper.Page;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminDao {
+public interface AdminMapper {
 
     int insert(Admin admin);
 

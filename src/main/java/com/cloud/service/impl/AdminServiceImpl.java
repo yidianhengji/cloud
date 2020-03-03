@@ -1,6 +1,6 @@
 package com.cloud.service.impl;
 
-import com.cloud.dao.AdminDao;
+import com.cloud.dao.AdminMapper;
 import com.cloud.entity.Admin;
 import com.cloud.handler.CommonConst;
 import com.cloud.service.AdminService;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
-    private AdminDao adminDao;
+    private AdminMapper adminDao;
 
     @Override
     public Page<Admin> query(Admin admin) {
