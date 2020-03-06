@@ -2,12 +2,6 @@ package com.cloud.entity;
 
 import java.io.Serializable;
 
-/**
- * 角色菜单资源表(TbSysRoleMenu)实体类
- *
- * @author makejava
- * @since 2020-03-03 17:22:56
- */
 public class SysRoleMenu implements Serializable {
     private static final long serialVersionUID = -17312522749890561L;
     //主键

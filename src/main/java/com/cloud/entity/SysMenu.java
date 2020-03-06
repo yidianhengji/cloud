@@ -3,12 +3,6 @@ package com.cloud.entity;
 import java.util.Date;
 import java.io.Serializable;
 
-/**
- * 菜单表(TbSysMenu)实体类
- *
- * @author makejava
- * @since 2020-03-03 17:18:19
- */
 public class SysMenu implements Serializable {
     private static final long serialVersionUID = -98805086958558089L;
     //主键

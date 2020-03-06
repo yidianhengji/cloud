@@ -3,12 +3,6 @@ package com.cloud.entity;
 import java.util.Date;
 import java.io.Serializable;
 
-/**
- * 角色表(TbSysRole)实体类
- *
- * @author makejava
- * @since 2020-03-03 16:58:00
- */
 public class SysRole implements Serializable {
     private static final long serialVersionUID = -78160017369186637L;
     //主键

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50562
 File Encoding         : 65001
 
-Date: 2020-03-03 17:27:13
+Date: 2020-03-06 13:46:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,7 +71,7 @@ CREATE TABLE `tb_product` (
   `praise_rate` double(23,6) DEFAULT NULL COMMENT '好评率',
   `cover_image` varchar(200) DEFAULT NULL COMMENT '商品封面',
   `second_image` varchar(200) DEFAULT NULL COMMENT '商品图片',
-  `CONTENT` varchar(2000) DEFAULT NULL COMMENT '商品详情',
+  `content` varchar(2000) DEFAULT NULL COMMENT '商品详情',
   `score_number` int(11) DEFAULT NULL COMMENT '评分数',
   `point_number` int(11) DEFAULT NULL COMMENT '商品积分数',
   `is_index` int(11) DEFAULT NULL COMMENT '是否首页',
@@ -135,10 +135,10 @@ DROP TABLE IF EXISTS `tb_product_category`;
 CREATE TABLE `tb_product_category` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
   `category_id` varchar(255) DEFAULT NULL COMMENT '上级id',
-  `LEVEL` int(11) DEFAULT NULL COMMENT '级别',
+  `level` int(11) DEFAULT NULL COMMENT '级别',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `category_code` varchar(20) DEFAULT NULL COMMENT '分类CODE',
-  `Is_Delete` int(11) DEFAULT NULL COMMENT '是否删除 是否删除 是否删除 是否删除 1、是 2、否',
+  `Is_delete` int(11) DEFAULT NULL COMMENT '是否删除 是否删除 是否删除 是否删除 1、是 2、否',
   `clas_attribute` varchar(255) DEFAULT NULL COMMENT '类目属性code',
   `sales_information` varchar(255) DEFAULT NULL COMMENT '销售信息code 多的已逗号隔开',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
@@ -156,10 +156,10 @@ CREATE TABLE `tb_product_category` (
 DROP TABLE IF EXISTS `tb_product_dictionary`;
 CREATE TABLE `tb_product_dictionary` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
-  `CODE` varchar(30) DEFAULT NULL COMMENT '编码code',
+  `code` varchar(30) DEFAULT NULL COMMENT '编码code',
   `name` varchar(30) DEFAULT NULL COMMENT '键',
-  `VALUES` varchar(30) DEFAULT NULL COMMENT '值',
-  `LEVEL` int(11) DEFAULT NULL COMMENT '级别',
+  `values` varchar(30) DEFAULT NULL COMMENT '值',
+  `level` int(11) DEFAULT NULL COMMENT '级别',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`uuid`) USING BTREE
