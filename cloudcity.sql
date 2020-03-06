@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50562
 File Encoding         : 65001
 
-Date: 2020-03-06 16:19:47
+Date: 2020-03-06 17:30:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `tb_area`;
 CREATE TABLE `tb_area` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
   `area_id` varchar(255) DEFAULT NULL COMMENT '上级id',
-  `LEVEL` int(11) DEFAULT NULL COMMENT '级别',
+  `level` int(11) DEFAULT NULL COMMENT '级别',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `area_telno` int(11) DEFAULT NULL COMMENT '地区区号',
   `is_delete` int(11) DEFAULT NULL COMMENT '是否删除',
@@ -66,9 +66,9 @@ CREATE TABLE `tb_product` (
   `name` varchar(50) DEFAULT NULL COMMENT '名称',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `product_number` varchar(30) DEFAULT NULL COMMENT '编号',
-  `market_price` double(23,6) DEFAULT NULL COMMENT '市场价',
-  `member_price` double(23,6) DEFAULT NULL COMMENT '会员价',
-  `praise_rate` double(23,6) DEFAULT NULL COMMENT '好评率',
+  `market_price` decimal(23,6) DEFAULT NULL COMMENT '市场价',
+  `member_price` decimal(23,6) DEFAULT NULL COMMENT '会员价',
+  `praise_rate` decimal(23,6) DEFAULT NULL COMMENT '好评率',
   `cover_image` varchar(200) DEFAULT NULL COMMENT '商品封面',
   `second_image` varchar(200) DEFAULT NULL COMMENT '商品图片',
   `content` varchar(2000) DEFAULT NULL COMMENT '商品详情',
@@ -87,12 +87,13 @@ CREATE TABLE `tb_product` (
   `end_time` datetime DEFAULT NULL COMMENT '截止日期',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '添加时间',
-  PRIMARY KEY (`uuid`) USING BTREE
+  PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='商品表';
 
 -- ----------------------------
 -- Records of tb_product
 -- ----------------------------
+INSERT INTO `tb_product` VALUES ('f82459a150cf411cb1d86832f456360b', '12', '', '', '', '', '', '', '0.000000', '0.000000', '0.000000', '', null, '123213', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', null, null, '2020-03-06 17:26:02', '2020-03-06 17:26:02');
 
 -- ----------------------------
 -- Table structure for tb_product_brand
@@ -120,7 +121,7 @@ INSERT INTO `tb_product_brand` VALUES ('f071d7e9662c4966bc961a2dd5580e06', '', '
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_product_brand_categroy`;
 CREATE TABLE `tb_product_brand_categroy` (
-  `uuid` int(11) NOT NULL COMMENT '主键',
+  `uuid` varchar(255) NOT NULL COMMENT '主键',
   `brand_id` varchar(4000) DEFAULT NULL COMMENT '品牌id',
   `category_id` varchar(4000) DEFAULT NULL COMMENT '分类id',
   PRIMARY KEY (`uuid`) USING BTREE
@@ -129,6 +130,8 @@ CREATE TABLE `tb_product_brand_categroy` (
 -- ----------------------------
 -- Records of tb_product_brand_categroy
 -- ----------------------------
+INSERT INTO `tb_product_brand_categroy` VALUES ('873acd515eab49e3ade4b1b7250e5f8e', '123', '12321321');
+INSERT INTO `tb_product_brand_categroy` VALUES ('96e80e00a5624c8185575b33709b7fd5', '123', '123');
 
 -- ----------------------------
 -- Table structure for tb_product_category
@@ -140,7 +143,7 @@ CREATE TABLE `tb_product_category` (
   `level` int(11) DEFAULT NULL COMMENT '级别',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `category_code` varchar(20) DEFAULT NULL COMMENT '分类CODE',
-  `Is_delete` int(11) DEFAULT NULL COMMENT '是否删除 是否删除 是否删除 是否删除 1、是 2、否',
+  `is_delete` int(11) DEFAULT NULL COMMENT '是否删除 是否删除 是否删除 是否删除 1、是 2、否',
   `clas_attribute` varchar(255) DEFAULT NULL COMMENT '类目属性code',
   `sales_information` varchar(255) DEFAULT NULL COMMENT '销售信息code 多的已逗号隔开',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
@@ -193,7 +196,7 @@ CREATE TABLE `tb_product_review` (
   `user_id` varchar(255) DEFAULT NULL COMMENT '会员id',
   `product_id` varchar(255) DEFAULT NULL COMMENT '商品ID',
   `point_number` int(11) DEFAULT NULL COMMENT '分值',
-  `CONTENT` varchar(2000) DEFAULT NULL COMMENT '评论内容',
+  `context` varchar(2000) DEFAULT NULL COMMENT '评论内容',
   `is_delete` int(11) DEFAULT NULL COMMENT '是否删除',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '添加时间',
@@ -203,6 +206,8 @@ CREATE TABLE `tb_product_review` (
 -- ----------------------------
 -- Records of tb_product_review
 -- ----------------------------
+INSERT INTO `tb_product_review` VALUES ('3531f3ca0da7432986bd2a7d6cdc843f', '213', '12', '0', '', '0', '2020-03-06 17:29:45', '2020-03-06 17:29:45');
+INSERT INTO `tb_product_review` VALUES ('dd60874e901e485da22fef35c0a71fc3', '213', '12', '0', '123213', '0', '2020-03-06 17:06:22', '2020-03-06 17:06:04');
 
 -- ----------------------------
 -- Table structure for tb_product_stock
@@ -220,6 +225,8 @@ CREATE TABLE `tb_product_stock` (
 -- ----------------------------
 -- Records of tb_product_stock
 -- ----------------------------
+INSERT INTO `tb_product_stock` VALUES ('5afa1b04435043c4b09577f0c1bd928a', '123', '213', '2020-03-06 17:29:55', '2020-03-06 17:29:55');
+INSERT INTO `tb_product_stock` VALUES ('7cda164768f04f22afedc42e6478dc22', '123', '4444444', '2020-03-06 17:05:44', '2020-03-06 17:05:23');
 
 -- ----------------------------
 -- Table structure for tb_sys_admin
@@ -258,7 +265,7 @@ DROP TABLE IF EXISTS `tb_sys_menu`;
 CREATE TABLE `tb_sys_menu` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
   `name` varchar(255) DEFAULT NULL COMMENT '名称',
-  `LEVEL` int(11) DEFAULT NULL COMMENT '级别',
+  `level` int(11) DEFAULT NULL COMMENT '级别',
   `icon` varchar(255) DEFAULT NULL COMMENT '图标',
   `url` varchar(255) DEFAULT NULL COMMENT '路径',
   `menu_uuid` varchar(255) DEFAULT NULL COMMENT '上级菜单',
@@ -368,7 +375,7 @@ CREATE TABLE `tb_user_collect` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
   `product_id` varchar(255) DEFAULT NULL COMMENT '商品_id',
   `user_id` varchar(255) DEFAULT NULL COMMENT '会员ID',
-  `TYPE` int(11) DEFAULT NULL COMMENT '类型 1、收藏 2、关注',
+  `type` int(11) DEFAULT NULL COMMENT '类型 1、收藏 2、关注',
   `is_delete` int(11) DEFAULT NULL COMMENT '是否删除',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '添加时间',

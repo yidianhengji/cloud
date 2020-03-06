@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.dao.ProductMapper">
+
+    <resultMap type="com.cloud.entity.Product" id="ProductMap">
+        <result property="uuid" column="uuid" jdbcType="VARCHAR"/>
+        <result property="brandId" column="brand_id" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="category_id" jdbcType="VARCHAR"/>
+        <result property="reviewId" column="review_id" jdbcType="VARCHAR"/>
+        <result property="skuId" column="sku_id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="productNumber" column="product_number" jdbcType="VARCHAR"/>
+        <result property="marketPrice" column="market_price" jdbcType="NUMERIC"/>
+        <result property="memberPrice" column="member_price" jdbcType="NUMERIC"/>
+        <result property="praiseRate" column="praise_rate" jdbcType="NUMERIC"/>
+        <result property="coverImage" column="cover_image" jdbcType="VARCHAR"/>
+        <result property="secondImage" column="second_image" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="scoreNumber" column="score_number" jdbcType="INTEGER"/>
+        <result property="pointNumber" column="point_number" jdbcType="INTEGER"/>
+        <result property="isIndex" column="is_index" jdbcType="INTEGER"/>
+        <result property="isRecommend" column="is_recommend" jdbcType="INTEGER"/>
+        <result property="isTop" column="is_top" jdbcType="INTEGER"/>
+        <result property="isHot" column="is_hot" jdbcType="INTEGER"/>
+        <result property="isSell" column="is_sell" jdbcType="INTEGER"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+        <result property="stockNumber" column="stock_number" jdbcType="INTEGER"/>
+        <result property="surplusNumber" column="surplus_number" jdbcType="INTEGER"/>
+        <result property="soldNumber" column="sold_number" jdbcType="INTEGER"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductMap">
+        select
+          uuid, brand_id, category_id, review_id, sku_id, name, description, product_number, market_price, member_price, praise_rate, cover_image, second_image, content, score_number, point_number, is_index, is_recommend, is_top, is_hot, is_sell, is_delete, stock_number, surplus_number, sold_number, start_time, end_time, modify_time, create_time
+        from cloudcity.tb_product
+        <where>
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+        </where>
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductMap">
+        select
+        uuid, brand_id, category_id, review_id, sku_id, name, description, product_number, market_price, member_price, praise_rate, cover_image, second_image, content, score_number, point_number, is_index, is_recommend, is_top, is_hot, is_sell, is_delete, stock_number, surplus_number, sold_number, start_time, end_time, modify_time, create_time
+        from cloudcity.tb_product
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProductMap">
+        select
+          uuid, brand_id, category_id, review_id, sku_id, name, description, product_number, market_price, member_price, praise_rate, cover_image, second_image, content, score_number, point_number, is_index, is_recommend, is_top, is_hot, is_sell, is_delete, stock_number, surplus_number, sold_number, start_time, end_time, modify_time, create_time
+        from cloudcity.tb_product
+        <where>
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="brandId != null and brandId != ''">
+                and brand_id = #{brandId}
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                and category_id = #{categoryId}
+            </if>
+            <if test="reviewId != null and reviewId != ''">
+                and review_id = #{reviewId}
+            </if>
+            <if test="skuId != null and skuId != ''">
+                and sku_id = #{skuId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="productNumber != null and productNumber != ''">
+                and product_number = #{productNumber}
+            </if>
+            <if test="marketPrice != null">
+                and market_price = #{marketPrice}
+            </if>
+            <if test="memberPrice != null">
+                and member_price = #{memberPrice}
+            </if>
+            <if test="praiseRate != null">
+                and praise_rate = #{praiseRate}
+            </if>
+            <if test="coverImage != null and coverImage != ''">
+                and cover_image = #{coverImage}
+            </if>
+            <if test="secondImage != null and secondImage != ''">
+                and second_image = #{secondImage}
+            </if>
+            <if test="content != null and content != ''">
+                and content = #{content}
+            </if>
+            <if test="scoreNumber != null">
+                and score_number = #{scoreNumber}
+            </if>
+            <if test="pointNumber != null">
+                and point_number = #{pointNumber}
+            </if>
+            <if test="isIndex != null">
+                and is_index = #{isIndex}
+            </if>
+            <if test="isRecommend != null">
+                and is_recommend = #{isRecommend}
+            </if>
+            <if test="isTop != null">
+                and is_top = #{isTop}
+            </if>
+            <if test="isHot != null">
+                and is_hot = #{isHot}
+            </if>
+            <if test="isSell != null">
+                and is_sell = #{isSell}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="stockNumber != null">
+                and stock_number = #{stockNumber}
+            </if>
+            <if test="surplusNumber != null">
+                and surplus_number = #{surplusNumber}
+            </if>
+            <if test="soldNumber != null">
+                and sold_number = #{soldNumber}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="modifyTime != null">
+                and modify_time = #{modifyTime}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into  cloudcity.tb_product(uuid,brand_id, category_id, review_id, sku_id, name, description, product_number, market_price, member_price, praise_rate, cover_image, content, score_number, point_number, is_index, is_recommend, is_top, is_hot, is_sell, is_delete, stock_number, surplus_number, sold_number, start_time, end_time, modify_time, create_time)
+        values (#{uuid},#{brandId}, #{categoryId}, #{reviewId}, #{skuId}, #{name}, #{description}, #{productNumber}, #{marketPrice}, #{memberPrice}, #{praiseRate}, #{coverImage}, #{content}, #{scoreNumber}, #{pointNumber}, #{isIndex}, #{isRecommend}, #{isTop}, #{isHot}, #{isSell}, #{isDelete}, #{stockNumber}, #{surplusNumber}, #{soldNumber}, #{startTime}, #{endTime}, #{modifyTime}, #{createTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update cloudcity.tb_product
+        <set>
+            <if test="brandId != null and brandId != ''">
+                brand_id = #{brandId},
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                category_id = #{categoryId},
+            </if>
+            <if test="reviewId != null and reviewId != ''">
+                review_id = #{reviewId},
+            </if>
+            <if test="skuId != null and skuId != ''">
+                sku_id = #{skuId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="productNumber != null and productNumber != ''">
+                product_number = #{productNumber},
+            </if>
+            <if test="marketPrice != null">
+                market_price = #{marketPrice},
+            </if>
+            <if test="memberPrice != null">
+                member_price = #{memberPrice},
+            </if>
+            <if test="praiseRate != null">
+                praise_rate = #{praiseRate},
+            </if>
+            <if test="coverImage != null and coverImage != ''">
+                cover_image = #{coverImage},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="scoreNumber != null">
+                score_number = #{scoreNumber},
+            </if>
+            <if test="pointNumber != null">
+                point_number = #{pointNumber},
+            </if>
+            <if test="isIndex != null">
+                is_index = #{isIndex},
+            </if>
+            <if test="isRecommend != null">
+                is_recommend = #{isRecommend},
+            </if>
+            <if test="isTop != null">
+                is_top = #{isTop},
+            </if>
+            <if test="isHot != null">
+                is_hot = #{isHot},
+            </if>
+            <if test="isSell != null">
+                is_sell = #{isSell},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+            <if test="stockNumber != null">
+                stock_number = #{stockNumber},
+            </if>
+            <if test="surplusNumber != null">
+                surplus_number = #{surplusNumber},
+            </if>
+            <if test="soldNumber != null">
+                sold_number = #{soldNumber},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        where uuid = #{uuid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from cloudcity.tb_product where uuid = #{uuid}
+    </delete>
+
+</mapper>

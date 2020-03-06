@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.dao.ProductBrandCategroyMapper">
+
+    <resultMap type="com.cloud.entity.ProductBrandCategroy" id="ProductBrandCategroyMap">
+        <result property="uuid" column="uuid" jdbcType="INTEGER"/>
+        <result property="brandId" column="brand_id" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="category_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductBrandCategroyMap">
+        select
+          uuid, brand_id, category_id
+        from cloudcity.tb_product_brand_categroy
+        <where>
+            <if test="uuid != null">
+                and uuid = #{uuid}
+            </if>
+        </where>
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductBrandCategroyMap">
+        select
+        uuid, brand_id, category_id
+        from cloudcity.tb_product_brand_categroy
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProductBrandCategroyMap">
+        select
+          uuid, brand_id, category_id
+        from cloudcity.tb_product_brand_categroy
+        <where>
+            <if test="uuid != null">
+                and uuid = #{uuid}
+            </if>
+            <if test="brandId != null and brandId != ''">
+                and brand_id = #{brandId}
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into  cloudcity.tb_product_brand_categroy(uuid,brand_id, category_id)
+        values (#{uuid},#{brandId}, #{categoryId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update cloudcity.tb_product_brand_categroy
+        <set>
+            <if test="brandId != null and brandId != ''">
+                brand_id = #{brandId},
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                category_id = #{categoryId},
+            </if>
+        </set>
+        where uuid = #{uuid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from cloudcity.tb_product_brand_categroy where uuid = #{uuid}
+    </delete>
+
+</mapper>
