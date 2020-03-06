@@ -4,6 +4,7 @@ import com.cloud.handler.BusinessException;
 import com.cloud.handler.BusinessStatus;
 import com.cloud.handler.Result;
 import com.cloud.util.FileUtil;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Calendar;
 import java.util.UUID;
 
+@Api(tags = "上传文件模块")
 @RestController
 @RequestMapping("/upload")
 public class FileController {

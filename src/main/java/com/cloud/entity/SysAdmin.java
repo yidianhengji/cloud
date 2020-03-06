@@ -1,47 +1,33 @@
 package com.cloud.entity;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.io.Serializable;
 
-public class Admin implements Serializable {
-
+public class SysAdmin implements Serializable {
+    private static final long serialVersionUID = -53458276028098160L;
+    //主键
     private String uuid;
-
+    //姓名
     private String name;
-
+    //手机号码
     private String phone;
-
+    //密码
     private String password;
-
+    //所属角色
     private String roleId;
-
+    //头像地址
     private String headPic;
-
+    //状态 状态 状态 状态 1正常 2.禁用
     private Integer status;
-
+    //创建时间
     private Date createTime;
-
+    //修改时间
     private Date modifyTime;
-
-    private Integer pageNum;
 
     private Integer pageSize;
 
-    public Integer getPageNum() {
-        return pageNum;
-    }
+    private Integer pageNum;
 
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
 
     public String getUuid() {
         return uuid;
@@ -113,5 +99,21 @@ public class Admin implements Serializable {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
     }
 }
