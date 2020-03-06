@@ -1,7 +1,10 @@
 package com.cloud.entity;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class ProductCategory implements Serializable {
@@ -37,10 +40,12 @@ public class ProductCategory implements Serializable {
         return serialVersionUID;
     }
 
+    @JsonProperty
     public List<ProductCategory> getChilds() {
         return childs;
     }
 
+    @JsonIgnore
     public void setChilds(List<ProductCategory> childs) {
         this.childs = childs;
     }
@@ -125,18 +130,22 @@ public class ProductCategory implements Serializable {
         this.createTime = createTime;
     }
 
+    @JsonIgnore
     public Integer getPageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Integer getPageNum() {
         return pageNum;
     }
 
+    @JsonProperty
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
+    @JsonProperty
     public void setPageNum(Integer pageNum) {
         this.pageNum = pageNum;
     }

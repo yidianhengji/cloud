@@ -1,5 +1,8 @@
 package com.cloud.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class SysRoleMenu implements Serializable {
@@ -15,7 +18,6 @@ public class SysRoleMenu implements Serializable {
 
 	private Integer pageNum;
 
-    
     public String getUuid() {
         return uuid;
     }
@@ -40,18 +42,22 @@ public class SysRoleMenu implements Serializable {
         this.menuId = menuId;
     }
 
+    @JsonIgnore
 	public Integer getPageSize() {
 		return pageSize;
 	}
 
+    @JsonIgnore
 	public Integer getPageNum() {
 		return pageNum;
 	}
 
+    @JsonProperty
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
+    @JsonProperty
 	public void setPageNum(Integer pageNum) {
 		this.pageNum = pageNum;
 	}

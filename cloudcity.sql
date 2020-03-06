@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50562
 File Encoding         : 65001
 
-Date: 2020-03-06 13:46:19
+Date: 2020-03-06 16:19:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -112,6 +112,8 @@ CREATE TABLE `tb_product_brand` (
 -- ----------------------------
 -- Records of tb_product_brand
 -- ----------------------------
+INSERT INTO `tb_product_brand` VALUES ('e2654212838c4e0faa61602be2452acb', '', '', '华为手机', '0', '2020-03-06 14:11:03', '2020-03-06 14:10:29');
+INSERT INTO `tb_product_brand` VALUES ('f071d7e9662c4966bc961a2dd5580e06', '', '', '苹果手机', '0', '2020-03-06 14:10:43', '2020-03-06 14:10:43');
 
 -- ----------------------------
 -- Table structure for tb_product_brand_categroy
@@ -149,6 +151,19 @@ CREATE TABLE `tb_product_category` (
 -- ----------------------------
 -- Records of tb_product_category
 -- ----------------------------
+INSERT INTO `tb_product_category` VALUES ('1e115095ea564059a4318b4e2e09fffc', '58628f6638f24fb7850f9fcd5430c1c5', '0', '冰箱冷柜', '', '0', '', '', '2020-03-06 14:39:29', '2020-03-06 14:39:29');
+INSERT INTO `tb_product_category` VALUES ('58628f6638f24fb7850f9fcd5430c1c5', '', '0', '电器', '', '0', '', '', '2020-03-06 14:39:00', '2020-03-06 14:39:00');
+INSERT INTO `tb_product_category` VALUES ('6cf09a5c2a9f41ec88122136f9b3499c', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机耳机', '', '0', '', '', '2020-03-06 14:38:08', '2020-03-06 14:38:08');
+INSERT INTO `tb_product_category` VALUES ('715ed401b9084ba7b5b1f644823a2fa0', '', '0', '手机', '', '0', '', '', '2020-03-06 14:37:21', '2020-03-06 14:37:21');
+INSERT INTO `tb_product_category` VALUES ('8110032542fa4b698e63c2ac0f4c6c44', '58628f6638f24fb7850f9fcd5430c1c5', '0', '洗衣机', '', '0', '', '', '2020-03-06 14:39:35', '2020-03-06 14:39:35');
+INSERT INTO `tb_product_category` VALUES ('8131de22604648e9a7484b08361f9344', '58628f6638f24fb7850f9fcd5430c1c5', '0', '烤箱', '', '0', '', '', '2020-03-06 14:39:40', '2020-03-06 14:39:40');
+INSERT INTO `tb_product_category` VALUES ('9a7e95e73477427b9c100db7f9478540', '58628f6638f24fb7850f9fcd5430c1c5', '0', '厨房小电器', '', '0', '', '', '2020-03-06 14:39:19', '2020-03-06 14:39:19');
+INSERT INTO `tb_product_category` VALUES ('b0eaae34b9404212ad273de78b7c8899', '715ed401b9084ba7b5b1f644823a2fa0', '0', '充电宝', '', '0', '', '', '2020-03-06 14:38:14', '2020-03-06 14:38:14');
+INSERT INTO `tb_product_category` VALUES ('b4d955171aa748e68d5b866ba4d0b8d3', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机贴纸', '', '0', '', '', '2020-03-06 14:38:26', '2020-03-06 14:38:26');
+INSERT INTO `tb_product_category` VALUES ('c0ffce2764784834a6a05f768a99694e', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机壳', '', '0', '', '', '2020-03-06 14:37:59', '2020-03-06 14:37:59');
+INSERT INTO `tb_product_category` VALUES ('ec72bf1a98c446569777fa77defb875a', '58628f6638f24fb7850f9fcd5430c1c5', '0', '电视机', '', '0', '', '', '2020-03-06 14:39:10', '2020-03-06 14:39:10');
+INSERT INTO `tb_product_category` VALUES ('f80a12579f6246f29c0846bcb35147ef', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机挂件', '', '0', '', '', '2020-03-06 14:38:38', '2020-03-06 14:38:38');
+INSERT INTO `tb_product_category` VALUES ('ffe1b5ff9dfa43f2875e87a0688d43a4', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机支架', '', '0', '', '', '2020-03-06 14:38:32', '2020-03-06 14:38:32');
 
 -- ----------------------------
 -- Table structure for tb_product_dictionary
@@ -217,7 +232,7 @@ CREATE TABLE `tb_sys_admin` (
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `role_id` varchar(255) DEFAULT NULL COMMENT '所属角色',
   `head_pic` varchar(255) DEFAULT NULL COMMENT '头像地址',
-  `status` int(11) DEFAULT NULL COMMENT '状态 状态 状态 状态 1正常 2.禁用',
+  `status` int(11) unsigned zerofill DEFAULT NULL COMMENT '状态 状态 状态 状态 1正常 2.禁用',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`uuid`) USING BTREE
@@ -226,22 +241,15 @@ CREATE TABLE `tb_sys_admin` (
 -- ----------------------------
 -- Records of tb_sys_admin
 -- ----------------------------
-INSERT INTO `tb_sys_admin` VALUES ('49362091e4a84140b69e9e6a1d40cba5', '李四5', null, null, null, null, null, '2020-03-03 11:01:47', '2020-03-03 11:01:47');
-INSERT INTO `tb_sys_admin` VALUES ('57e54a6034f24b4d869ea88670fc41d4', '李四12', null, null, null, null, null, '2020-03-03 11:02:10', '2020-03-03 11:02:10');
-INSERT INTO `tb_sys_admin` VALUES ('59bb4d1d1be4478f8b2e03fe7090162f', '11张三', '18588773304', null, null, null, null, '2020-03-03 09:53:05', '2020-03-03 09:53:05');
-INSERT INTO `tb_sys_admin` VALUES ('66f54abf8ed54faeae09db98d624d280', 'admin', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', null, null, '1', '2020-03-03 11:30:16', '2020-03-03 11:33:12');
-INSERT INTO `tb_sys_admin` VALUES ('766adef1addd4369b5f85aa59150a445', '李四7', null, null, null, null, null, '2020-03-03 11:01:52', '2020-03-03 11:01:52');
-INSERT INTO `tb_sys_admin` VALUES ('7ed724ee337448fca3b52963c68f2820', '李四3', null, null, null, null, null, '2020-03-03 11:01:32', '2020-03-03 11:01:32');
-INSERT INTO `tb_sys_admin` VALUES ('929276134cd243f98405d7277bfbdf09', 'sdasdfgd', '185887733', null, null, null, null, '2020-03-02 17:24:01', '2020-03-02 17:24:01');
-INSERT INTO `tb_sys_admin` VALUES ('9f06be4864144accb4079e42d734642e', '李四9', null, null, null, null, null, '2020-03-03 11:02:00', '2020-03-03 11:02:00');
-INSERT INTO `tb_sys_admin` VALUES ('a71705c9e7db438892732ac1e5f832d2', '李四8', null, null, null, null, null, '2020-03-03 11:01:57', '2020-03-03 11:01:57');
-INSERT INTO `tb_sys_admin` VALUES ('ab4892f7210d4e7faa7d9f0f828943a9', '李四2', null, null, null, null, null, '2020-03-03 11:01:30', '2020-03-03 11:01:30');
-INSERT INTO `tb_sys_admin` VALUES ('d9e76fbf9f484317b14be0ae8b130d32', '李四6', null, null, null, null, null, '2020-03-03 11:01:50', '2020-03-03 11:01:50');
-INSERT INTO `tb_sys_admin` VALUES ('dadb0f55eefb420bac9314ad0acaee0f', '李四10', null, null, null, null, null, '2020-03-03 11:02:02', '2020-03-03 11:02:02');
-INSERT INTO `tb_sys_admin` VALUES ('dde1d2ba205b4997bfd97ddb9a3d088d', '李四1', null, null, null, null, null, '2020-03-03 11:01:27', '2020-03-03 11:01:27');
-INSERT INTO `tb_sys_admin` VALUES ('e81ec4bb6d224d959c12798b03b76d91', 'sdasd12fgd', '185887733', null, null, null, null, '2020-03-02 17:24:47', '2020-03-02 17:24:47');
-INSERT INTO `tb_sys_admin` VALUES ('ea2a0072ad5a4ababd31ca12a1554018', '李四11', null, null, null, null, null, '2020-03-03 11:02:08', '2020-03-03 11:02:08');
-INSERT INTO `tb_sys_admin` VALUES ('f306c7eff4864673afbd3a79d08494de', '李四4', null, null, null, null, null, '2020-03-03 11:01:34', '2020-03-03 11:01:34');
+INSERT INTO `tb_sys_admin` VALUES ('04512791d3c6489393e18fa678c266d7', 'admin', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:45:13', '2020-03-06 16:17:18');
+INSERT INTO `tb_sys_admin` VALUES ('21bb101b8bb3445ba120c0f6aa1295dd', '张三2', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:45:57', '2020-03-06 15:45:57');
+INSERT INTO `tb_sys_admin` VALUES ('296fa0a4626d4903b648d24446959151', '张三1', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:45:54', '2020-03-06 15:45:54');
+INSERT INTO `tb_sys_admin` VALUES ('5814fcd63b7a415594fe4eb15e35457e', '张三6', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:46:05', '2020-03-06 15:46:05');
+INSERT INTO `tb_sys_admin` VALUES ('71852d61922640d085cac387daaa43eb', '张三7', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:46:06', '2020-03-06 15:46:06');
+INSERT INTO `tb_sys_admin` VALUES ('7c88e8e72e6c4017b7987425d866f2a6', '张三7', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 16:16:40', '2020-03-06 16:16:40');
+INSERT INTO `tb_sys_admin` VALUES ('b84d6491c47f451dae47ca1aae778e13', '张三5', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:46:03', '2020-03-06 15:46:03');
+INSERT INTO `tb_sys_admin` VALUES ('cb473e9ae5d94ebfb90d8c5ec80cd790', '张三3', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:45:59', '2020-03-06 15:45:59');
+INSERT INTO `tb_sys_admin` VALUES ('e7afc44cf9c04537969bdca2833632c1', '张三4', '18588773304', 'e10adc3949ba59abbe56e057f20f883e', '', '', '00000000000', '2020-03-06 15:46:01', '2020-03-06 15:46:01');
 
 -- ----------------------------
 -- Table structure for tb_sys_menu

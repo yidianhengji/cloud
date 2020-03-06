@@ -1,7 +1,10 @@
 package com.cloud.entity;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class ProductBrand implements Serializable {
     private static final long serialVersionUID = 228103041709881533L;
@@ -20,9 +23,9 @@ public class ProductBrand implements Serializable {
     //添加时间
     private Date createTime;
 
-	private Integer pageSize;
+    private Integer pageSize;
 
-	private Integer pageNum;
+    private Integer pageNum;
 
     public String getUuid() {
         return uuid;
@@ -31,7 +34,7 @@ public class ProductBrand implements Serializable {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -39,7 +42,7 @@ public class ProductBrand implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public String getIco() {
         return ico;
     }
@@ -47,7 +50,7 @@ public class ProductBrand implements Serializable {
     public void setIco(String ico) {
         this.ico = ico;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -55,7 +58,7 @@ public class ProductBrand implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public Integer getIsDelete() {
         return isDelete;
     }
@@ -63,7 +66,7 @@ public class ProductBrand implements Serializable {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
-    
+
     public Date getModifyTime() {
         return modifyTime;
     }
@@ -71,7 +74,7 @@ public class ProductBrand implements Serializable {
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
-    
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -80,19 +83,23 @@ public class ProductBrand implements Serializable {
         this.createTime = createTime;
     }
 
-	public Integer getPageSize() {
-		return pageSize;
-	}
+    @JsonIgnore
+    public Integer getPageSize() {
+        return pageSize;
+    }
 
-	public Integer getPageNum() {
-		return pageNum;
-	}
+    @JsonIgnore
+    public Integer getPageNum() {
+        return pageNum;
+    }
 
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
+    @JsonProperty
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	public void setPageNum(Integer pageNum) {
-		this.pageNum = pageNum;
-	}
+    @JsonProperty
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
 }

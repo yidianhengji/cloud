@@ -1,7 +1,10 @@
 package com.cloud.entity;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysRole implements Serializable {
     private static final long serialVersionUID = -78160017369186637L;
@@ -21,7 +24,6 @@ public class SysRole implements Serializable {
 	private Integer pageSize;
 
 	private Integer pageNum;
-
     
     public String getUuid() {
         return uuid;
@@ -71,18 +73,22 @@ public class SysRole implements Serializable {
         this.modifyTime = modifyTime;
     }
 
+    @JsonIgnore
 	public Integer getPageSize() {
 		return pageSize;
 	}
 
+    @JsonIgnore
 	public Integer getPageNum() {
 		return pageNum;
 	}
 
+    @JsonProperty
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
+    @JsonProperty
 	public void setPageNum(Integer pageNum) {
 		this.pageNum = pageNum;
 	}

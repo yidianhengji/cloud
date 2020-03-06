@@ -1,7 +1,10 @@
 package com.cloud.entity;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysMenu implements Serializable {
     private static final long serialVersionUID = -98805086958558089L;
@@ -101,18 +104,22 @@ public class SysMenu implements Serializable {
         this.modifyTime = modifyTime;
     }
 
+    @JsonIgnore
 	public Integer getPageSize() {
 		return pageSize;
 	}
 
+    @JsonIgnore
 	public Integer getPageNum() {
 		return pageNum;
 	}
 
+    @JsonProperty
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
+    @JsonProperty
 	public void setPageNum(Integer pageNum) {
 		this.pageNum = pageNum;
 	}

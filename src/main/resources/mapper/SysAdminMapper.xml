@@ -68,6 +68,7 @@
                 and modify_time = #{modifyTime}
             </if>
         </where>
+        ORDER BY modify_time DESC
     </select>
 
     <!--新增所有列-->
