@@ -3,7 +3,7 @@
 <mapper namespace="com.cloud.dao.ProductBrandCategroyMapper">
 
     <resultMap type="com.cloud.entity.ProductBrandCategroy" id="ProductBrandCategroyMap">
-        <result property="uuid" column="uuid" jdbcType="INTEGER"/>
+        <result property="uuid" column="uuid" jdbcType="VARCHAR"/>
         <result property="brandId" column="brand_id" jdbcType="VARCHAR"/>
         <result property="categoryId" column="category_id" jdbcType="VARCHAR"/>
     </resultMap>
