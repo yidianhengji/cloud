@@ -2,33 +2,49 @@ package com.cloud.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@ApiModel(description = "商品分类表")
 public class ProductCategory implements Serializable {
     private static final long serialVersionUID = -70960669553753633L;
-    //主键
+
+    @ApiModelProperty(value = "主键")
     private String uuid;
-    //上级id
+
+    @ApiModelProperty(value = "上级id")
     private String categoryId;
-    //级别
+
+    @ApiModelProperty(value = "级别")
     private Integer level;
-    //名称
+
+    @ApiModelProperty(value = "名称")
     private String name;
-    //分类CODE
+
+    @ApiModelProperty(value = "分类CODE")
     private String categoryCode;
-    //是否删除 是否删除 是否删除 是否删除 1、是 2、否
+
+    @ApiModelProperty(value = "是否删除 1、是 2、否")
     private Integer isDelete;
-    //类目属性code
+
+    @ApiModelProperty(value = "类目属性code")
     private String clasAttribute;
-    //销售信息code 多的已逗号隔开
+
+    @ApiModelProperty(value = "销售信息code 多的已逗号隔开")
     private String salesInformation;
-    //修改时间
+
+    @ApiModelProperty(value = "修改时间")
     private Date modifyTime;
-    //添加时间
+
+    @ApiModelProperty(value = "添加时间")
     private Date createTime;
+
+    @ApiModelProperty(value = "分类图片")
+    private String icon;
 
     private Integer pageSize;
 
@@ -36,8 +52,12 @@ public class ProductCategory implements Serializable {
 
     private List<ProductCategory> childs;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     @JsonProperty

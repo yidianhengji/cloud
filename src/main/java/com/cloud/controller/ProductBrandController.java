@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.Resource;
 
-@Api(tags = "商品品牌模块")
 @RestController
 @RequestMapping("/productBrand")
+@Api(tags = "品牌表")
 public class ProductBrandController {
     private static Logger log = LoggerFactory.getLogger(ProductBrandController.class);
 
@@ -36,14 +37,14 @@ public class ProductBrandController {
     public Result<ProductBrand> add(@RequestBody ProductBrand productBrand) {
         log.info("新增,productBrand={}", productBrand);
         ProductBrand one = productBrandService.insert(productBrand);
-        return new Result<ProductBrand>(BusinessStatus.SUCCESS,one);
+        return new Result<ProductBrand>(BusinessStatus.SUCCESS, one);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Result<ProductBrand> update(@RequestBody ProductBrand productBrand) {
         log.info("修改,productBrand={}", productBrand);
         ProductBrand one = productBrandService.update(productBrand);
-        return new Result<ProductBrand>(BusinessStatus.SUCCESS,one);
+        return new Result<ProductBrand>(BusinessStatus.SUCCESS, one);
     }
 
     @RequestMapping(value = "/queryAll", method = RequestMethod.POST)
@@ -51,7 +52,7 @@ public class ProductBrandController {
         log.info("分页查询,productBrand={}", productBrand);
         Page<ProductBrand> one = productBrandService.queryAll(productBrand);
         PageInfo<ProductBrand> pageinfo = new PageInfo<>(one);
-        return new ResultPage<ProductBrand>(BusinessStatus.SUCCESS,pageinfo);
+        return new ResultPage<ProductBrand>(BusinessStatus.SUCCESS, pageinfo);
     }
 
 }

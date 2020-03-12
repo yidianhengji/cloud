@@ -8,30 +8,30 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 
-@ApiModel(description = "品牌表")
-public class ProductBrand implements Serializable {
+@ApiModel(description = "轮播图表")
+public class Carousel implements Serializable {
 
-    private static final long serialVersionUID = 946425820835773235L;
+    private static final long serialVersionUID = -74748081666063539L;
 
-    @ApiModelProperty(value = "主键")
     private String uuid;
-
-    @ApiModelProperty(value = "描述")
-    private String description;
-
-    @ApiModelProperty(value = "图标")
-    private String ico;
 
     @ApiModelProperty(value = "名称")
     private String name;
 
-    @ApiModelProperty(value = "是否删除 是否删除 是否删除 是否删除 1、是 2、否")
-    private Integer isDelete;
+    @ApiModelProperty(value = "图片地址")
+    private String url;
 
-    @ApiModelProperty(value = "修改时间")
+    @ApiModelProperty(value = "权重")
+    private Integer layer;
+
+    @ApiModelProperty(value = "1、普通轮播  2、首页轮播")
+    private Integer type;
+
+    @ApiModelProperty(value = "跳转地址")
+    private String link;
+
     private Date modifyTime;
 
-    @ApiModelProperty(value = "添加时间")
     private Date createTime;
 
     private Integer pageSize;
@@ -46,22 +46,6 @@ public class ProductBrand implements Serializable {
         this.uuid = uuid;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIco() {
-        return ico;
-    }
-
-    public void setIco(String ico) {
-        this.ico = ico;
-    }
-
     public String getName() {
         return name;
     }
@@ -70,12 +54,36 @@ public class ProductBrand implements Serializable {
         this.name = name;
     }
 
-    public Integer getIsDelete() {
-        return isDelete;
+    public String getUrl() {
+        return url;
     }
 
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Integer getLayer() {
+        return layer;
+    }
+
+    public void setLayer(Integer layer) {
+        this.layer = layer;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public Date getModifyTime() {

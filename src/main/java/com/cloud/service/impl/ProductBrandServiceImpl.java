@@ -8,6 +8,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.util.StringUtil;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,6 @@ import java.util.UUID;
 
 @Service
 public class ProductBrandServiceImpl implements ProductBrandService {
-
     @Resource
     private ProductBrandMapper productBrandDao;
 
@@ -40,7 +40,7 @@ public class ProductBrandServiceImpl implements ProductBrandService {
 
     @Override
     public ProductBrand update(ProductBrand productBrand) {
-        if(StringUtil.isEmpty(productBrand.getUuid())) {
+        if (StringUtil.isEmpty(productBrand.getUuid())) {
             throw new BusinessException(500, "uuid必传");
         }
         productBrand.setModifyTime(new Date());
@@ -55,10 +55,10 @@ public class ProductBrandServiceImpl implements ProductBrandService {
 
     @Override
     public Page<ProductBrand> queryAll(ProductBrand productBrand) {
-        if(productBrand.getPageSize() != null && productBrand.getPageNum() != null) {
+        if (productBrand.getPageSize() != null && productBrand.getPageNum() != null) {
             PageHelper.startPage(productBrand.getPageNum(), productBrand.getPageSize());
         }
-        Page<ProductBrand> pages =  this.productBrandDao.queryAll(productBrand);
+        Page<ProductBrand> pages = this.productBrandDao.queryAll(productBrand);
         return pages;
     }
 }

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloud.dao.ProductDictionaryMapper">
+<mapper namespace="com.cloud.dao.CarouselMapper">
 
-    <resultMap type="com.cloud.entity.ProductDictionary" id="ProductDictionaryMap">
+    <resultMap type="com.cloud.entity.Carousel" id="CarouselMap">
         <result property="uuid" column="uuid" jdbcType="VARCHAR"/>
-        <result property="code" column="code" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="values" column="values" jdbcType="VARCHAR"/>
-        <result property="level" column="level" jdbcType="INTEGER"/>
+        <result property="url" column="url" jdbcType="VARCHAR"/>
+        <result property="layer" column="layer" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="link" column="link" jdbcType="VARCHAR"/>
         <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="ProductDictionaryMap">
+    <select id="queryById" resultMap="CarouselMap">
         select
-          uuid, code, name, values, level, modify_time, create_time
-        from cloudcity.tb_product_dictionary
+          uuid, name, url, layer, type, link, modify_time, create_time
+        from cloudcity.tb_carousel
         <where>
             <if test="uuid != null and uuid != ''">
                 and uuid = #{uuid}
@@ -25,33 +26,36 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="ProductDictionaryMap">
+    <select id="queryAllByLimit" resultMap="CarouselMap">
         select
-        uuid, code, name, values, level, modify_time, create_time
-        from cloudcity.tb_product_dictionary
+        uuid, name, url, layer, type, link, modify_time, create_time
+        from cloudcity.tb_carousel
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="ProductDictionaryMap">
+    <select id="queryAll" resultMap="CarouselMap">
         select
-          uuid, code, name, values, level, modify_time, create_time
-        from cloudcity.tb_product_dictionary
+          uuid, name, url, layer, type, link, modify_time, create_time
+        from cloudcity.tb_carousel
         <where>
             <if test="uuid != null and uuid != ''">
                 and uuid = #{uuid}
             </if>
-            <if test="code != null and code != ''">
-                and code = #{code}
-            </if>
             <if test="name != null and name != ''">
                 and name = #{name}
             </if>
-            <if test="values != null and values != ''">
-                and values = #{values}
+            <if test="url != null and url != ''">
+                and url = #{url}
             </if>
-            <if test="level != null">
-                and level = #{level}
+            <if test="layer != null">
+                and layer = #{layer}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="link != null and link != ''">
+                and link = #{link}
             </if>
             <if test="modifyTime != null">
                 and modify_time = #{modifyTime}
@@ -64,25 +68,28 @@
 
     <!--新增所有列-->
     <insert id="insert">
-        insert into  cloudcity.tb_product_dictionary(uuid,code, name, values, level, modify_time, create_time)
-        values (#{uuid},#{code}, #{name}, #{values}, #{level}, #{modifyTime}, #{createTime})
+        insert into  cloudcity.tb_carousel(uuid,name, url, layer, type, link, modify_time, create_time)
+        values (#{uuid},#{name}, #{url}, #{layer}, #{type}, #{link}, #{modifyTime}, #{createTime})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update cloudcity.tb_product_dictionary
+        update cloudcity.tb_carousel
         <set>
-            <if test="code != null and code != ''">
-                code = #{code},
-            </if>
             <if test="name != null and name != ''">
                 name = #{name},
             </if>
-            <if test="values != null and values != ''">
-                values = #{values},
+            <if test="url != null and url != ''">
+                url = #{url},
             </if>
-            <if test="level != null">
-                level = #{level},
+            <if test="layer != null">
+                layer = #{layer},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="link != null and link != ''">
+                link = #{link},
             </if>
             <if test="modifyTime != null">
                 modify_time = #{modifyTime},
@@ -96,7 +103,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from cloudcity.tb_product_dictionary where uuid = #{uuid}
+        delete from cloudcity.tb_carousel where uuid = #{uuid}
     </delete>
 
 </mapper>

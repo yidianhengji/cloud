@@ -64,4 +64,11 @@ public class ProductCategoryController {
         return new Result<List<ProductCategory>>(BusinessStatus.SUCCESS, list);
     }
 
+    @RequestMapping(value = "/queryFindCategoryId", method = RequestMethod.POST)
+    public Result<List<ProductCategory>> queryFindCategoryId(@RequestBody ProductCategory productCategory) {
+        log.info("查询树形结构,productCategory={}", productCategory.getCategoryId());
+        List<ProductCategory> list = productCategoryService.queryFindCategoryId(productCategory.getCategoryId());
+        return new Result<List<ProductCategory>>(BusinessStatus.SUCCESS, list);
+    }
+
 }

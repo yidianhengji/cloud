@@ -14,7 +14,7 @@
           uuid, brand_id, category_id
         from cloudcity.tb_product_brand_categroy
         <where>
-            <if test="uuid != null">
+            <if test="uuid != null and uuid != ''">
                 and uuid = #{uuid}
             </if>
         </where>
@@ -34,7 +34,7 @@
           uuid, brand_id, category_id
         from cloudcity.tb_product_brand_categroy
         <where>
-            <if test="uuid != null">
+            <if test="uuid != null and uuid != ''">
                 and uuid = #{uuid}
             </if>
             <if test="brandId != null and brandId != ''">

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50562
 File Encoding         : 65001
 
-Date: 2020-03-06 17:30:09
+Date: 2020-03-12 16:55:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,28 @@ CREATE TABLE `tb_area` (
 -- ----------------------------
 -- Records of tb_area
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_carousel
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_carousel`;
+CREATE TABLE `tb_carousel` (
+  `uuid` varchar(255) NOT NULL,
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `url` varchar(255) DEFAULT NULL COMMENT '图片地址',
+  `layer` int(100) DEFAULT NULL COMMENT '权重',
+  `type` int(11) DEFAULT '1' COMMENT '1、普通轮播  2、首页轮播',
+  `link` varchar(255) DEFAULT NULL COMMENT '跳转地址',
+  `modify_time` datetime DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='轮播图表';
+
+-- ----------------------------
+-- Records of tb_carousel
+-- ----------------------------
+INSERT INTO `tb_carousel` VALUES ('371345bf7dd244e1b1d70f720b238841', '123', '', '0', '0', '', '2020-03-11 14:26:55', '2020-03-11 14:26:55');
+INSERT INTO `tb_carousel` VALUES ('dd71883f9bb34c188224e8631a6f0d48', '123', '', '0', '0', '', '2020-03-11 17:30:38', '2020-03-11 17:30:38');
 
 -- ----------------------------
 -- Table structure for tb_orders
@@ -93,7 +115,7 @@ CREATE TABLE `tb_product` (
 -- ----------------------------
 -- Records of tb_product
 -- ----------------------------
-INSERT INTO `tb_product` VALUES ('f82459a150cf411cb1d86832f456360b', '12', '', '', '', '', '', '', '0.000000', '0.000000', '0.000000', '', null, '123213', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', null, null, '2020-03-06 17:26:02', '2020-03-06 17:26:02');
+INSERT INTO `tb_product` VALUES ('2131bc7b917e4434b6365a7f157c5bda', '', '', '', '', '123', '', '', '0.000000', '0.000000', '0.000000', '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', null, null, '2020-03-12 11:11:50', '2020-03-12 11:11:50');
 
 -- ----------------------------
 -- Table structure for tb_product_brand
@@ -104,7 +126,7 @@ CREATE TABLE `tb_product_brand` (
   `description` varchar(200) DEFAULT NULL COMMENT '描述',
   `ico` varchar(200) DEFAULT NULL COMMENT '图标',
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `is_delete` int(11) DEFAULT NULL COMMENT '是否删除 是否删除 是否删除 是否删除 1、是 2、否',
+  `is_delete` int(11) DEFAULT NULL COMMENT '是否删除 1、是 2、否',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`uuid`) USING BTREE
@@ -113,6 +135,7 @@ CREATE TABLE `tb_product_brand` (
 -- ----------------------------
 -- Records of tb_product_brand
 -- ----------------------------
+INSERT INTO `tb_product_brand` VALUES ('ac4c104ec3f54691b179306bd9bf516c', '', 'http://localhost:8060/tup/2020/3/12/9735d79df150454b87a80d05c3d7a6f5.jpg', 'PRAUD', null, '2020-03-12 13:31:15', '2020-03-12 13:31:15');
 INSERT INTO `tb_product_brand` VALUES ('e2654212838c4e0faa61602be2452acb', '', '', '华为手机', '0', '2020-03-06 14:11:03', '2020-03-06 14:10:29');
 INSERT INTO `tb_product_brand` VALUES ('f071d7e9662c4966bc961a2dd5580e06', '', '', '苹果手机', '0', '2020-03-06 14:10:43', '2020-03-06 14:10:43');
 
@@ -122,14 +145,15 @@ INSERT INTO `tb_product_brand` VALUES ('f071d7e9662c4966bc961a2dd5580e06', '', '
 DROP TABLE IF EXISTS `tb_product_brand_categroy`;
 CREATE TABLE `tb_product_brand_categroy` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
-  `brand_id` varchar(4000) DEFAULT NULL COMMENT '品牌id',
-  `category_id` varchar(4000) DEFAULT NULL COMMENT '分类id',
+  `brand_id` varchar(255) DEFAULT NULL COMMENT '品牌id',
+  `category_id` varchar(255) DEFAULT NULL COMMENT '分类id',
   PRIMARY KEY (`uuid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='品牌分类关联表';
 
 -- ----------------------------
 -- Records of tb_product_brand_categroy
 -- ----------------------------
+INSERT INTO `tb_product_brand_categroy` VALUES ('6eb51b6a1497462384e7ae963afad78d', '1', '1');
 INSERT INTO `tb_product_brand_categroy` VALUES ('873acd515eab49e3ade4b1b7250e5f8e', '123', '12321321');
 INSERT INTO `tb_product_brand_categroy` VALUES ('96e80e00a5624c8185575b33709b7fd5', '123', '123');
 
@@ -143,6 +167,7 @@ CREATE TABLE `tb_product_category` (
   `level` int(11) DEFAULT NULL COMMENT '级别',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `category_code` varchar(20) DEFAULT NULL COMMENT '分类CODE',
+  `icon` varchar(255) DEFAULT NULL COMMENT '分类图片',
   `is_delete` int(11) DEFAULT NULL COMMENT '是否删除 是否删除 是否删除 是否删除 1、是 2、否',
   `clas_attribute` varchar(255) DEFAULT NULL COMMENT '类目属性code',
   `sales_information` varchar(255) DEFAULT NULL COMMENT '销售信息code 多的已逗号隔开',
@@ -154,38 +179,50 @@ CREATE TABLE `tb_product_category` (
 -- ----------------------------
 -- Records of tb_product_category
 -- ----------------------------
-INSERT INTO `tb_product_category` VALUES ('1e115095ea564059a4318b4e2e09fffc', '58628f6638f24fb7850f9fcd5430c1c5', '0', '冰箱冷柜', '', '0', '', '', '2020-03-06 14:39:29', '2020-03-06 14:39:29');
-INSERT INTO `tb_product_category` VALUES ('58628f6638f24fb7850f9fcd5430c1c5', '', '0', '电器', '', '0', '', '', '2020-03-06 14:39:00', '2020-03-06 14:39:00');
-INSERT INTO `tb_product_category` VALUES ('6cf09a5c2a9f41ec88122136f9b3499c', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机耳机', '', '0', '', '', '2020-03-06 14:38:08', '2020-03-06 14:38:08');
-INSERT INTO `tb_product_category` VALUES ('715ed401b9084ba7b5b1f644823a2fa0', '', '0', '手机', '', '0', '', '', '2020-03-06 14:37:21', '2020-03-06 14:37:21');
-INSERT INTO `tb_product_category` VALUES ('8110032542fa4b698e63c2ac0f4c6c44', '58628f6638f24fb7850f9fcd5430c1c5', '0', '洗衣机', '', '0', '', '', '2020-03-06 14:39:35', '2020-03-06 14:39:35');
-INSERT INTO `tb_product_category` VALUES ('8131de22604648e9a7484b08361f9344', '58628f6638f24fb7850f9fcd5430c1c5', '0', '烤箱', '', '0', '', '', '2020-03-06 14:39:40', '2020-03-06 14:39:40');
-INSERT INTO `tb_product_category` VALUES ('9a7e95e73477427b9c100db7f9478540', '58628f6638f24fb7850f9fcd5430c1c5', '0', '厨房小电器', '', '0', '', '', '2020-03-06 14:39:19', '2020-03-06 14:39:19');
-INSERT INTO `tb_product_category` VALUES ('b0eaae34b9404212ad273de78b7c8899', '715ed401b9084ba7b5b1f644823a2fa0', '0', '充电宝', '', '0', '', '', '2020-03-06 14:38:14', '2020-03-06 14:38:14');
-INSERT INTO `tb_product_category` VALUES ('b4d955171aa748e68d5b866ba4d0b8d3', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机贴纸', '', '0', '', '', '2020-03-06 14:38:26', '2020-03-06 14:38:26');
-INSERT INTO `tb_product_category` VALUES ('c0ffce2764784834a6a05f768a99694e', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机壳', '', '0', '', '', '2020-03-06 14:37:59', '2020-03-06 14:37:59');
-INSERT INTO `tb_product_category` VALUES ('ec72bf1a98c446569777fa77defb875a', '58628f6638f24fb7850f9fcd5430c1c5', '0', '电视机', '', '0', '', '', '2020-03-06 14:39:10', '2020-03-06 14:39:10');
-INSERT INTO `tb_product_category` VALUES ('f80a12579f6246f29c0846bcb35147ef', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机挂件', '', '0', '', '', '2020-03-06 14:38:38', '2020-03-06 14:38:38');
-INSERT INTO `tb_product_category` VALUES ('ffe1b5ff9dfa43f2875e87a0688d43a4', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机支架', '', '0', '', '', '2020-03-06 14:38:32', '2020-03-06 14:38:32');
+INSERT INTO `tb_product_category` VALUES ('1e115095ea564059a4318b4e2e09fffc', '58628f6638f24fb7850f9fcd5430c1c5', '0', '冰箱冷柜', '', null, '0', '', '', '2020-03-06 14:39:29', '2020-03-06 14:39:29');
+INSERT INTO `tb_product_category` VALUES ('58628f6638f24fb7850f9fcd5430c1c5', '0', '0', '电器', '', null, '0', '', '', '2020-03-06 14:39:00', '2020-03-06 14:39:00');
+INSERT INTO `tb_product_category` VALUES ('6cf09a5c2a9f41ec88122136f9b3499c', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机耳机', '', null, '0', '', '', '2020-03-06 14:38:08', '2020-03-06 14:38:08');
+INSERT INTO `tb_product_category` VALUES ('715ed401b9084ba7b5b1f644823a2fa0', '0', '0', '手机', '', null, '0', '', '', '2020-03-06 14:37:21', '2020-03-06 14:37:21');
+INSERT INTO `tb_product_category` VALUES ('7a27615a097747de84e3e678b99533fc', 'ec72bf1a98c446569777fa77defb875a', null, '222', '', null, null, '', '', '2020-03-12 09:56:41', '2020-03-12 09:56:41');
+INSERT INTO `tb_product_category` VALUES ('8110032542fa4b698e63c2ac0f4c6c44', '58628f6638f24fb7850f9fcd5430c1c5', '0', '洗衣机', '', null, '0', '', '', '2020-03-06 14:39:35', '2020-03-06 14:39:35');
+INSERT INTO `tb_product_category` VALUES ('8131de22604648e9a7484b08361f9344', '58628f6638f24fb7850f9fcd5430c1c5', '0', '烤箱', '', null, '0', '', '', '2020-03-06 14:39:40', '2020-03-06 14:39:40');
+INSERT INTO `tb_product_category` VALUES ('9a7e95e73477427b9c100db7f9478540', '58628f6638f24fb7850f9fcd5430c1c5', '0', '厨房小电器', '', null, '0', '', '', '2020-03-06 14:39:19', '2020-03-06 14:39:19');
+INSERT INTO `tb_product_category` VALUES ('b0eaae34b9404212ad273de78b7c8899', '715ed401b9084ba7b5b1f644823a2fa0', '0', '充电宝', '', null, '0', '', '', '2020-03-06 14:38:14', '2020-03-06 14:38:14');
+INSERT INTO `tb_product_category` VALUES ('b4d955171aa748e68d5b866ba4d0b8d3', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机贴纸', '', null, '0', '', '', '2020-03-06 14:38:26', '2020-03-06 14:38:26');
+INSERT INTO `tb_product_category` VALUES ('b563e4568f494fee9d433057e021712f', '0', null, '123', '分类code1', null, null, '', '', '2020-03-12 09:49:29', '2020-03-12 09:49:29');
+INSERT INTO `tb_product_category` VALUES ('c0ffce2764784834a6a05f768a99694e', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机壳', '', null, '0', '', '', '2020-03-06 14:37:59', '2020-03-06 14:37:59');
+INSERT INTO `tb_product_category` VALUES ('ec72bf1a98c446569777fa77defb875a', '58628f6638f24fb7850f9fcd5430c1c5', '0', '电视机', '', null, '0', 'dianqibingxiang', '', '2020-03-06 14:39:10', '2020-03-06 14:39:10');
+INSERT INTO `tb_product_category` VALUES ('f80a12579f6246f29c0846bcb35147ef', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机挂件', '', null, '0', '', '', '2020-03-06 14:38:38', '2020-03-06 14:38:38');
+INSERT INTO `tb_product_category` VALUES ('ffe1b5ff9dfa43f2875e87a0688d43a4', '715ed401b9084ba7b5b1f644823a2fa0', '0', '手机支架', '', null, '0', '', '', '2020-03-06 14:38:32', '2020-03-06 14:38:32');
 
 -- ----------------------------
--- Table structure for tb_product_dictionary
+-- Table structure for tb_product_class_attribute
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_product_dictionary`;
-CREATE TABLE `tb_product_dictionary` (
+DROP TABLE IF EXISTS `tb_product_class_attribute`;
+CREATE TABLE `tb_product_class_attribute` (
   `uuid` varchar(255) NOT NULL COMMENT '主键',
-  `code` varchar(30) DEFAULT NULL COMMENT '编码code',
-  `name` varchar(30) DEFAULT NULL COMMENT '键',
-  `values` varchar(30) DEFAULT NULL COMMENT '值',
+  `code` varchar(100) DEFAULT NULL COMMENT '编码code',
+  `name` varchar(100) DEFAULT NULL COMMENT '键',
+  `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  `value` varchar(100) DEFAULT NULL COMMENT '值',
   `level` int(11) DEFAULT NULL COMMENT '级别',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `required` int(20) DEFAULT NULL COMMENT '是否必填',
+  `type` int(11) DEFAULT NULL COMMENT '1、输入框  2、时间  3、选择框',
+  `type_code` varchar(255) DEFAULT NULL COMMENT '对应的字典表code',
   PRIMARY KEY (`uuid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='商品字典表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='商品类目属性表';
 
 -- ----------------------------
--- Records of tb_product_dictionary
+-- Records of tb_product_class_attribute
 -- ----------------------------
+INSERT INTO `tb_product_class_attribute` VALUES ('1405a031ed5542aa892baebc84e126c2', 'dianqibingxiang', '能效备案号', '', null, null, '2020-03-12 10:52:04', '2020-03-12 10:52:04', '2', '1', '');
+INSERT INTO `tb_product_class_attribute` VALUES ('27827e961f5d4122b204389caa216297', 'dianqibingxiang', '耗电量', 'Kwh/24h', null, null, '2020-03-12 10:50:11', '2020-03-12 10:50:11', '1', '1', '');
+INSERT INTO `tb_product_class_attribute` VALUES ('9d4d207953f24044bcc0738b3438abf2', 'dianqibingxiang', '冰箱冰柜品牌', '', null, null, '2020-03-12 10:49:07', '2020-03-12 10:49:07', '1', '3', 'pingpai');
+INSERT INTO `tb_product_class_attribute` VALUES ('b91637c0e29e45b7b76bd57c20f490ec', 'dianqibingxiang', '系列', '', null, null, '2020-03-12 10:49:26', '2020-03-12 10:49:26', '2', '1', '');
+INSERT INTO `tb_product_class_attribute` VALUES ('e4f69640105844f585ae7265d9ae79b7', 'dianqibingxiang', '冷冻室容积', 'L', null, null, '2020-03-12 10:51:24', '2020-03-12 10:51:24', '2', '1', '');
+INSERT INTO `tb_product_class_attribute` VALUES ('ecf5dce7825f4b749d119c58a6b23015', 'dianqibingxiang', '上市时间', '', null, null, '2020-03-12 10:49:45', '2020-03-12 10:49:45', '1', '2', '');
 
 -- ----------------------------
 -- Table structure for tb_product_review

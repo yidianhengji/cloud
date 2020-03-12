@@ -17,6 +17,7 @@ import java.util.UUID;
 
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
+
     @Resource
     private ProductCategoryMapper productCategoryDao;
 
@@ -66,8 +67,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     public List<ProductCategory> queryTree(ProductCategory productCategory) {
         List<ProductCategory> list = this.productCategoryDao.queryAll(productCategory);
-        List<ProductCategory> listTree = getChilds(list, "");
+        List<ProductCategory> listTree = getChilds(list, "0");
         return listTree;
+    }
+
+    @Override
+    public List<ProductCategory> queryFindCategoryId(String categoryId) {
+        return this.productCategoryDao.queryFindCategoryId(categoryId);
     }
 
     public List<ProductCategory> getChilds(List<ProductCategory> list, String parent) {

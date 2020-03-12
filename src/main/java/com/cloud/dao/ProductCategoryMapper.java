@@ -4,12 +4,13 @@ import com.cloud.entity.ProductCategory;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository
 public interface ProductCategoryMapper {
 
-    ProductCategory queryById(@Param(value="uuid")String uuid);
+    ProductCategory queryById(@Param(value = "uuid") String uuid);
 
     List<ProductCategory> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
@@ -21,4 +22,5 @@ public interface ProductCategoryMapper {
 
     int deleteById(String uuid);
 
+    List<ProductCategory> queryFindCategoryId(@Param(value = "categoryId") String categoryId);
 }

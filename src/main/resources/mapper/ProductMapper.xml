@@ -152,8 +152,8 @@
 
     <!--新增所有列-->
     <insert id="insert">
-        insert into  cloudcity.tb_product(uuid,brand_id, category_id, review_id, sku_id, name, description, product_number, market_price, member_price, praise_rate, cover_image, content, score_number, point_number, is_index, is_recommend, is_top, is_hot, is_sell, is_delete, stock_number, surplus_number, sold_number, start_time, end_time, modify_time, create_time)
-        values (#{uuid},#{brandId}, #{categoryId}, #{reviewId}, #{skuId}, #{name}, #{description}, #{productNumber}, #{marketPrice}, #{memberPrice}, #{praiseRate}, #{coverImage}, #{content}, #{scoreNumber}, #{pointNumber}, #{isIndex}, #{isRecommend}, #{isTop}, #{isHot}, #{isSell}, #{isDelete}, #{stockNumber}, #{surplusNumber}, #{soldNumber}, #{startTime}, #{endTime}, #{modifyTime}, #{createTime})
+        insert into  cloudcity.tb_product(uuid,brand_id, category_id, review_id, sku_id, name, description, product_number, market_price, member_price, praise_rate, cover_image, second_image, content, score_number, point_number, is_index, is_recommend, is_top, is_hot, is_sell, is_delete, stock_number, surplus_number, sold_number, start_time, end_time, modify_time, create_time)
+        values (#{uuid},#{brandId}, #{categoryId}, #{reviewId}, #{skuId}, #{name}, #{description}, #{productNumber}, #{marketPrice}, #{memberPrice}, #{praiseRate}, #{coverImage}, #{secondImage}, #{content}, #{scoreNumber}, #{pointNumber}, #{isIndex}, #{isRecommend}, #{isTop}, #{isHot}, #{isSell}, #{isDelete}, #{stockNumber}, #{surplusNumber}, #{soldNumber}, #{startTime}, #{endTime}, #{modifyTime}, #{createTime})
     </insert>
 
     <!--通过主键修改数据-->
@@ -192,6 +192,9 @@
             </if>
             <if test="coverImage != null and coverImage != ''">
                 cover_image = #{coverImage},
+            </if>
+            <if test="secondImage != null and secondImage != ''">
+                second_image = #{secondImage},
             </if>
             <if test="content != null and content != ''">
                 content = #{content},

@@ -21,4 +21,5 @@ public interface ProductCategoryService {
 
     List<ProductCategory> queryTree(ProductCategory productCategory);
 
+    List<ProductCategory> queryFindCategoryId(String categoryId);
 }

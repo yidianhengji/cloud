@@ -11,6 +11,7 @@
         <result property="isDelete" column="Is_delete" jdbcType="INTEGER"/>
         <result property="clasAttribute" column="clas_attribute" jdbcType="VARCHAR"/>
         <result property="salesInformation" column="sales_information" jdbcType="VARCHAR"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
         <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -18,7 +19,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="ProductCategoryMap">
         select
-          uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time
+          uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time, icon
         from cloudcity.tb_product_category
         <where>
             <if test="uuid != null and uuid != ''">
@@ -30,7 +31,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ProductCategoryMap">
         select
-        uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time
+        uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time, icon
         from cloudcity.tb_product_category
         limit #{offset}, #{limit}
     </select>
@@ -38,7 +39,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ProductCategoryMap">
         select
-          uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time
+          uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time, icon
         from cloudcity.tb_product_category
         <where>
             <if test="uuid != null and uuid != ''">
@@ -71,13 +72,16 @@
             <if test="createTime != null">
                 and create_time = #{createTime}
             </if>
+            <if test="icon != null">
+                and icon = #{icon}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert">
-        insert into  cloudcity.tb_product_category(uuid,category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time)
-        values (#{uuid},#{categoryId}, #{level}, #{name}, #{categoryCode}, #{isDelete}, #{clasAttribute}, #{salesInformation}, #{modifyTime}, #{createTime})
+        insert into  cloudcity.tb_product_category(uuid,category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time, icon)
+        values (#{uuid},#{categoryId}, #{level}, #{name}, #{categoryCode}, #{isDelete}, #{clasAttribute}, #{salesInformation}, #{modifyTime}, #{createTime}, #{icon})
     </insert>
 
     <!--通过主键修改数据-->
@@ -111,6 +115,9 @@
             <if test="createTime != null">
                 create_time = #{createTime},
             </if>
+            <if test="icon != null and icon != ''">
+                icon = #{icon},
+            </if>
         </set>
         where uuid = #{uuid}
     </update>
@@ -119,5 +126,13 @@
     <delete id="deleteById">
         delete from cloudcity.tb_product_category where uuid = #{uuid}
     </delete>
+
+    <!--根据分类父级id查找数据-->
+    <select id="queryFindCategoryId" resultMap="ProductCategoryMap">
+        select
+        uuid, category_id, level, name, category_code, Is_delete, clas_attribute, sales_information, modify_time, create_time, icon
+        from cloudcity.tb_product_category
+        where category_id = #{categoryId}
+    </select>
 
 </mapper>
